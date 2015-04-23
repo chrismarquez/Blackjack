@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+C:\Users\Christopher\Desktop\Blackjack\.metadata\.plugins\org.eclipse.jdt.core
+693852550.index

@@ -1,0 +1,13 @@
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+
+public class GameControl extends JPanel{
+
+	public GameControl() {
+		super();
+		this.setPreferredSize(new Dimension(800, 100));
+	}
+	
+}

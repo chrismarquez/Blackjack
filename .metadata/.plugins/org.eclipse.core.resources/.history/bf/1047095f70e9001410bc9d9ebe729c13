@@ -1,0 +1,34 @@
+
+public class Baraja{
+	
+	private Naipe[] baraja;
+	private int posicion;
+	
+	public Baraja() {
+		this.baraja = new Naipe[52];
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 13; j++) {
+				Naipe naipe = new Naipe(i, j);
+				this.baraja[j + i * 13] = naipe;
+			}
+		}
+	}
+	
+	public void mezclar() {
+		
+	}
+	
+	public boolean find(int index, int[] array) {
+		for (i = 0; i < array.length; i++) {
+			if (index == array[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Naipe next() {
+		return this.baraja[posicion++];
+	}
+	
+}

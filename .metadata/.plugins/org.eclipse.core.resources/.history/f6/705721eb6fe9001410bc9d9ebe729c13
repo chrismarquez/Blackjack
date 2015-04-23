@@ -1,0 +1,19 @@
+
+public class Baraja{
+	
+	private Naipe[] baraja;
+	private int posicion;
+	
+	public Baraja() {
+		
+	}
+	
+	public void mezclar() {
+		
+	}
+	
+	public Naipe next() {
+		return new Naipe();
+	}
+	
+}

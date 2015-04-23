@@ -1,0 +1,8 @@
+import java.awt.Image;
+
+
+public class Naipe {
+	
+	private static final Image[] naipesImg = new Image[53];
+	
+}

@@ -1,0 +1,13 @@
+
+public class Dealer extends Jugador {
+
+	private int saldo;
+	private String nombre;
+	private boolean perdio;
+	private Naipe[] juego;
+	
+	public Jugador() {
+		
+	}
+	
+}

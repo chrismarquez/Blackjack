@@ -1,0 +1,13 @@
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+
+public class Blackjack extends JPanel{
+
+	public Blackjack() {
+		super();
+		this.setPreferredSize(new Dimension(800,600));
+	}
+	
+}

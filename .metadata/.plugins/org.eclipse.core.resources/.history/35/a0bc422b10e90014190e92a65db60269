@@ -1,0 +1,25 @@
+
+public class Jugador {
+	
+	private int saldo;
+	private String nombre;
+	private boolean perdio;
+	private Naipe[] juego;
+	
+	public Jugador() {
+		
+	}
+	
+	public int getSaldo() {
+		return this.saldo;
+	}
+	
+	public String getName() {
+		return this.nombre;
+	}
+	
+	public boolean perdio() {
+		return this.perdio;
+	}
+	
+}

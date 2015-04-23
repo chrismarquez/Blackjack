@@ -1,0 +1,15 @@
+import javax.swing.JFrame;
+
+
+public class GameWindow extends JFrame {
+	
+	public GameWindow() {
+		super();
+		
+	}
+
+	public static void main(String[] args) {
+		GameWindow a =new GameWindow();
+	}
+
+}

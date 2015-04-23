@@ -1,0 +1,24 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+
+public class Blackjack extends JPanel{
+
+	public Blackjack() {
+		super();
+		this.setPreferredSize(new Dimension(800,600));
+	}
+	
+	public void paintComponents(Graphics g) {
+		super.paintComponents(g);
+	}
+	
+	public void paintTable(Graphics g) {
+		g.setColor(Color.GREEN);
+		g.fillRect(0, 0, this.getWidth, this.getHeight()/2);
+	}
+	
+}

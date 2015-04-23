@@ -1,0 +1,48 @@
+
+public class Jugador {
+	
+	private int saldo;
+	private String nombre;
+	private boolean perdio;
+	private Naipe[] juego;
+	
+	public Jugador() {
+		
+	}
+	
+	public int getSaldo() {
+		return this.saldo;
+	}
+	
+	public String getName() {
+		return this.nombre;
+	}
+	
+	public boolean perdio() {
+		return this.perdio;
+	}
+	
+	public int getTotal() {
+		return 0;
+	}
+	
+	public void ganoPartida() {
+		
+	}
+	
+	public void perdioPartida() {
+		
+	}
+	
+	public void empatoPartida() {
+		
+	}
+	
+	public boolean otraCarta() {
+		return true;
+	}
+	
+	public boolean isBlackjack
+	
+	
+}

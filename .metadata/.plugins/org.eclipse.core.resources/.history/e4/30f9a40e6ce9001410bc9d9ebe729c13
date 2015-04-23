@@ -1,0 +1,32 @@
+
+public class Baraja{
+	
+	private Naipe[] baraja;
+	private int posicion;
+	
+	public Baraja() {
+		this.baraja = new Naipe[52];
+		
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 13; j++) {
+				Naipe naipe = new Naipe(i, j);
+				this.baraja[j + i * 13] = naipe;
+				System.out.println(naipe);
+			}
+		}
+		
+	}
+	
+	public void mezclar() {
+		
+	}
+	
+	public Naipe next() {
+		return baraja[this.posicion++];
+	}
+	
+	public static void main(String[] args) {
+		Baraja baraja = new Baraja();
+	}
+	
+}
