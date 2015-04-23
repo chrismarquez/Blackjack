@@ -36,6 +36,7 @@ public class Naipe {
 				images[j + i*13] = new ImageIcon(route).getImage();
 			}
 		}
+		images[52] = 
 		return images;		
 	}
 	

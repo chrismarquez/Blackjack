@@ -8,7 +8,6 @@ public class Naipe {
 	private static final Image[] naipesImg = fillImage();
 	private static final String[]  valores = fillValores(),
 								   figuras = fillFiguras();
-	private static final Image dorsoImg = new ImageIcon("Cartas//Fondo_carta.png").getImage();
 	private int figura,
 				valor;
 	
@@ -36,6 +35,7 @@ public class Naipe {
 				images[j + i*13] = new ImageIcon(route).getImage();
 			}
 		}
+		images[52] = new ImageIcon("Cartas//Fondo_carta.png").getImage();
 		return images;		
 	}
 	

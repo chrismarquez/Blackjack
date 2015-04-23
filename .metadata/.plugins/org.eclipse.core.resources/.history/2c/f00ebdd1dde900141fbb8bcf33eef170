@@ -8,12 +8,12 @@ public class Naipe {
 	private static final Image[] naipesImg = fillImage();
 	private static final String[]  valores = fillValores(),
 								   figuras = fillFiguras();
-	private static final Image dorsoImg = new ImageIcon("Cartas//Fondo_carta.png").getImage();
+	private static final Image dorsoImg = images[j + i*13] = new ImageIcon(route).getImage();
 	private int figura,
 				valor;
 	
 	public static Image[] fillImage() {
-		Image[] images = new Image[53];
+		Image[] images = new Image[52];
 		for(int i = 0; i < 4; i++) {
 			for (int j = 0; j < 13; j++) {
 				String route = "";
@@ -33,9 +33,9 @@ public class Naipe {
 				default:
 					break;
 				}
-				images[j + i*13] = new ImageIcon(route).getImage();
 			}
 		}
+		images[52] = new ImageIcon("Cartas//Fondo_carta.png").getImage();
 		return images;		
 	}
 	
