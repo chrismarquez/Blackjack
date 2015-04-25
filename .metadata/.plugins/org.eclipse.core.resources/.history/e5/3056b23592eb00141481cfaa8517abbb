@@ -1,0 +1,11 @@
+
+public class Dealer extends Jugador {
+	
+	public Dealer(String nombre) {
+		super((int) Double.POSITIVE_INFINITY, nombre);
+	}
+	
+	public void otraCarta(int decision) {
+		
+	}
+}

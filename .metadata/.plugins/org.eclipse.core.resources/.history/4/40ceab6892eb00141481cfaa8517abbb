@@ -1,0 +1,13 @@
+
+public class Dealer extends Jugador {
+	
+	public Dealer(String nombre) {
+		super((int) Double.POSITIVE_INFINITY, nombre);
+	}
+	
+	@Override
+	public boolean otraCarta(boolean decision) {
+		return super.otraCarta(decision);
+	}
+	
+}

@@ -1,0 +1,59 @@
+
+public class Jugador {
+	
+	private int saldo;
+	private String nombre;
+	private boolean perdio;
+	private Naipe[] juego;
+	
+	public Jugador(int saldo, String nombre) {
+		this.saldo = saldo;
+		this.nombre = nombre;
+		this.perdio = false;
+		this.juego = new Naipe[10];
+	}
+	
+	public int getSaldo() {
+		return this.saldo;
+	}
+	
+	public String getName() {
+		return this.nombre;
+	}
+	
+	public boolean perdio() {
+		return this.perdio;
+	}
+	
+	public int getTotal() {
+		int total = 0;
+		for (int i = 0; i < this.juego.length; i++) {
+			if(this.juego[i] != null) {
+				total += this.juego[i].getValor();
+			}
+		}
+		return total;
+	}
+	
+	public void ganoPartida() {
+		
+	}
+	
+	public void perdioPartida() {
+		
+	}
+	
+	public void empatoPartida() {
+		
+	}
+	
+	public boolean otraCarta() {
+		return true;
+	}
+	
+	public boolean isBlackjack() {
+		return true;
+	}
+	
+	
+}

@@ -1,0 +1,9 @@
+
+public class Dealer extends Jugador {
+	
+	public Dealer(int saldo, String nombre) {
+		this.saldo = 10;
+		this.nombre = "Hola";s
+	}
+	
+}

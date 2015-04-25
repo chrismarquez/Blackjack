@@ -7,7 +7,6 @@
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="java.awt.Graphics"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="Jugador"/>
 <fullyQualifiedTypeName name="java.awt.Image"/>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
@@ -15,4 +14,7 @@
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="Baraja"/>
 <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="javax.swing.text.StyledEditorKit.ForegroundAction"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,7 @@
+
+public class Dealer extends Jugador {
+	
+	public Dealer() {
+	}
+	
+}
