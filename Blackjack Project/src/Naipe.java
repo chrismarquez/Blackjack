@@ -69,6 +69,12 @@ public class Naipe {
 	}
 	
 	public Naipe(int figura, int valor) {
+		if(figura>3){
+			figura=0;
+		}
+		if(valor>12){
+			figura=0;
+		}
 		this.figura = figura;
 		this.valor = valor;
 	}
@@ -79,6 +85,10 @@ public class Naipe {
 	
 	public Image getImage() {
 		return this.naipesImg[this.valor + this.figura * 13];
+	}
+	
+	public Image getDorso(){
+		return this.dorsoImg;
 	}
 	
 	public int getValor() {

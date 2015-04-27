@@ -5,12 +5,14 @@ public class Jugador {
 	private String nombre;
 	private boolean perdio;
 	private Naipe[] juego;
+	private int cartas;
 	
 	public Jugador(int saldo, String nombre) {
 		this.saldo = saldo;
 		this.nombre = nombre;
 		this.perdio = false;
 		this.juego = new Naipe[10];
+		this.cartas=0;
 	}
 	
 	public int getSaldo() {
@@ -33,6 +35,15 @@ public class Jugador {
 			}
 		}
 		return total;
+	}
+	
+	public void tomaCarta(Naipe carta) {
+		this.juego[cartas]=carta;
+		cartas++;
+	}
+	
+	public Naipe getJuego(int i){
+		return this.juego[i];
 	}
 	
 	public void ganoPartida(int cantidad) {
