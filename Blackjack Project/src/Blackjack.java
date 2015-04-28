@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -15,7 +14,8 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 	private Baraja baraja;
 	private Jugador[] jugadores;
 	private Dealer dealer;
-	private int	numJ;
+	private int	numJ,
+				turno;
 
 	public Blackjack() {
 		super();
@@ -37,10 +37,10 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 		this.baraja = new Baraja();
 		this.jugadores=new Jugador[this.numJ];
 		for(int j=0; j<this.numJ; j++){
-			String nombre=(JOptionPane.showInputDialog(this, "¿Cual es el nombre del jugador "+ (j+1) + "?"));
+			String nombre="Jugador "+ (j+1);//(JOptionPane.showInputDialog(this, "¿Cual es el nombre del jugador "+ (j+1) + "?"));
 			boolean error;
-			int saldo = 0;
-			do{
+			int saldo = 100;
+			/*do{
 				try{
 					saldo=Integer.parseInt(JOptionPane.showInputDialog(this, "¿Cuál será el saldo de este jugador?"));
 					error=false;
@@ -48,11 +48,13 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 				catch(IllegalArgumentException e){
 					error=true;
 				}
-			}while(error);
+			}while(error);*/
 			jugadores[j]= new Jugador(saldo, nombre);
 		}
 		this.dealer= new Dealer("casa");
 		
+		turno=10;
+
 		Thread hilo = new Thread(this);
 		hilo.start();
 	}
@@ -64,18 +66,23 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 		for(int i=0; i<this.numJ; i++){
 			this.paintPlayer(g, i);
 		}
-		
+
 		this.paintDealer(g);
 
 		Naipe a = new Naipe(1,1);
 		g.drawImage(a.getDorso(), 0, 0, null);
 	}
-	
+
 	public void paintDealer(Graphics g){
 		g.setColor(Color.BLACK);
 		g.drawString(this.dealer.getName(), this.getWidth()/2-42, 35);
 		for(int i=0; this.dealer.getJuego(i)!=null; i++){
-			g.drawImage(this.dealer.getJuego(i).getImage(),this.getWidth()/2-42+20*i, 50+20*i, null);
+			if(i==0 && true/*condición antes de mostrar el juego*/){
+				g.drawImage(this.dealer.getJuego(i).getDorso(),this.getWidth()/2-42+20*i, 50+20*i, null);
+			}
+			else{
+				g.drawImage(this.dealer.getJuego(i).getImage(),this.getWidth()/2-42+20*i, 50+20*i, null);
+			}
 		}
 	}
 
@@ -85,6 +92,7 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 		g.drawString("$ "+this.jugadores[jug].getSaldo(), this.getWidth()*(jug+1)/5-42, (int) (this.getHeight()*0.5+140));
 		for(int i=0; this.jugadores[jug].getJuego(i)!=null; i++){
 			g.drawImage(this.jugadores[jug].getJuego(i).getImage(),this.getWidth()*(jug+1)/5-42+20*i, (int) (this.getHeight()*0.5)+20*i, null);
+			g.drawString("Total: "+this.jugadores[jug].getTotal(), this.getWidth()*(jug+1)/5-45, (int) (this.getHeight()*0.5-10));
 		}
 	}
 
@@ -104,7 +112,17 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if(this.turno>=this.numJ){
+			//turno del dealer
+		}
+		else if(e.getActionCommand()=="Otra carta"){
+			this.jugadores[this.turno].tomaCarta(this.baraja.next());
+			this.repaint();
+		}
+		if(e.getActionCommand()=="Quedarse así"){
+			this.turno++;
+			this.repaint();
+		}
 	}
 
 	@Override
@@ -130,6 +148,7 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 				e.printStackTrace();
 			}
 		}
+		turno=0;
 	}
 
 }

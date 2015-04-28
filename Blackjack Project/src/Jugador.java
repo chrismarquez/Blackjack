@@ -39,7 +39,7 @@ public class Jugador {
 	
 	public void tomaCarta(Naipe carta) {
 		this.juego[cartas]=carta;
-		cartas++;
+		cartas++;       
 	}
 	
 	public Naipe getJuego(int i){
