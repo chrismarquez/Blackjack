@@ -1,6 +1,5 @@
 import java.util.Random;
 
-
 public class Baraja{
 	
 	private Naipe[] baraja;
@@ -13,11 +12,13 @@ public class Baraja{
 			for (int j = 0; j < 13; j++) {
 				Naipe naipe = new Naipe(i, j);
 				this.baraja[j + i * 13] = naipe;
-				System.out.println(naipe);
+				//System.out.println(naipe);
 			}
 		}
 		
 		this.mezclar();
+		
+		
 	}
 	
 	public void mezclar() {
