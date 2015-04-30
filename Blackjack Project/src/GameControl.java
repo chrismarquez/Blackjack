@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ public class GameControl extends JPanel{
 
 	public GameControl(Blackjack blackjack) {
 		super();
+		setBackground(Color.BLACK);
 		this.setPreferredSize(new Dimension(800, 100));
 		
 		this.juego=blackjack;

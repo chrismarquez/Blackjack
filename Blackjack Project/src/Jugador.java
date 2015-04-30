@@ -1,4 +1,3 @@
-
 public class Jugador {
 	
 	private int saldo;
@@ -42,6 +41,10 @@ public class Jugador {
 		cartas++;       
 	}
 	
+	public int getCartas(){
+		return this.cartas;
+	}
+	
 	public Naipe getJuego(int i){
 		return this.juego[i];
 	}
@@ -52,7 +55,7 @@ public class Jugador {
 	
 	public void perdioPartida(int cantidad) {
 		this.saldo -= cantidad;
-	}
+	} 	
 	
 	public void empatoPartida(int cantidad) {
 		

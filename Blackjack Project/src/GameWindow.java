@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,11 +12,14 @@ public class GameWindow extends JFrame implements ActionListener{
 
 	public GameWindow() {
 		super("Blackjack");
+		this.setBackground(Color.BLACK);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Blackjack blackjack = new Blackjack();
 		GameControl gameControl = new GameControl(blackjack);
 		
 		this.add(gameControl, BorderLayout.SOUTH);
-		this.add(blackjack, BorderLayout.NORTH);
+		this.add(blackjack);
 
 		this.pack();
 		this.setResizable(false);

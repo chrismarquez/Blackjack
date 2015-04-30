@@ -15,7 +15,7 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 	private Jugador[] jugadores;
 	private Dealer dealer;
 	private int	numJ,
-				turno;
+	turno;
 
 	public Blackjack() {
 		super();
@@ -52,8 +52,8 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 			jugadores[j]= new Jugador(saldo, nombre);
 		}
 		this.dealer= new Dealer("casa");
-		
-		turno=10;
+
+		this.turno=0;
 
 		Thread hilo = new Thread(this);
 		hilo.start();
@@ -61,6 +61,7 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		setBackground(Color.BLACK);
 		this.paintTable(g);
 
 		for(int i=0; i<this.numJ; i++){
@@ -76,20 +77,22 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 	public void paintDealer(Graphics g){
 		g.setColor(Color.BLACK);
 		g.drawString(this.dealer.getName(), this.getWidth()/2-42, 35);
+		if(this.turno>=this.numJ){g.drawString("Total: " + this.dealer.getTotal(), this.getWidth()/2-42, 45);}
 		for(int i=0; this.dealer.getJuego(i)!=null; i++){
-			if(i==0 && true/*condición antes de mostrar el juego*/){
+			if(i==0 && this.turno<this.numJ){
 				g.drawImage(this.dealer.getJuego(i).getDorso(),this.getWidth()/2-42+20*i, 50+20*i, null);
 			}
 			else{
 				g.drawImage(this.dealer.getJuego(i).getImage(),this.getWidth()/2-42+20*i, 50+20*i, null);
 			}
 		}
+
 	}
 
 	public void paintPlayer(Graphics g, int jug){
 		g.setColor(Color.BLACK);
-		g.drawString(this.jugadores[jug].getName(), this.getWidth()*(jug+1)/5-45, (int) (this.getHeight()*0.5+120));
-		g.drawString("$ "+this.jugadores[jug].getSaldo(), this.getWidth()*(jug+1)/5-42, (int) (this.getHeight()*0.5+140));
+		g.drawString(this.jugadores[jug].getName(), this.getWidth()*(jug+1)/5-45, (int) (this.getHeight()*0.5+140));
+		g.drawString("$ "+this.jugadores[jug].getSaldo(), this.getWidth()*(jug+1)/5-42, (int) (this.getHeight()*0.5+160));
 		for(int i=0; this.jugadores[jug].getJuego(i)!=null; i++){
 			g.drawImage(this.jugadores[jug].getJuego(i).getImage(),this.getWidth()*(jug+1)/5-42+20*i, (int) (this.getHeight()*0.5)+20*i, null);
 			g.drawString("Total: "+this.jugadores[jug].getTotal(), this.getWidth()*(jug+1)/5-45, (int) (this.getHeight()*0.5-10));
@@ -97,7 +100,7 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 	}
 
 	public void paintTable(Graphics g) {
-		g.setColor(Color.GREEN);
+		g.setColor(new Color(50,150,50));
 		g.fillRect(0, 0, this.getWidth(), (int) (this.getHeight()*0.75));
 		g.fillOval(0, (int) (this.getHeight()*0.75 - this.getHeight()/12), this.getWidth(), this.getHeight()/6);
 
@@ -113,15 +116,37 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(this.turno>=this.numJ){
-			//turno del dealer
+			System.out.println("Ya terminó la partida");
+		}
+		else if(this.jugadores[this.turno].getCartas()<2){
+			System.out.println("Repartiendo");
 		}
 		else if(e.getActionCommand()=="Otra carta"){
 			this.jugadores[this.turno].tomaCarta(this.baraja.next());
 			this.repaint();
+
+			if(this.jugadores[this.turno].getTotal()>=21){
+				do{
+					this.turno++;
+					if(this.turno>=this.numJ){
+						JOptionPane.showMessageDialog(this, "Turno del dealer");
+						break;
+					}
+					else{
+						JOptionPane.showMessageDialog(this, "Turno del jugador " + (this.turno+1));
+					}
+				}while(this.jugadores[this.turno].getTotal()>=21);
+			}
 		}
-		if(e.getActionCommand()=="Quedarse así"){
+		else if(e.getActionCommand()=="Quedarse así"){
 			this.turno++;
 			this.repaint();
+			if(this.turno>=this.numJ){
+				JOptionPane.showMessageDialog(this, "Turno del dealer");
+			}
+			else{
+				JOptionPane.showMessageDialog(this, "Turno del jugador " + (this.turno+1));
+			}	
 		}
 	}
 
@@ -148,7 +173,31 @@ public class Blackjack extends JPanel implements ActionListener, Runnable{
 				e.printStackTrace();
 			}
 		}
-		turno=0;
+		this.turno=0;
+		while(this.jugadores[this.turno].getTotal()>=21){
+			this.turno++;
+			if(this.turno>=this.numJ){
+				JOptionPane.showMessageDialog(this, "Turno del dealer");
+				break;
+			}
+		}
+		JOptionPane.showMessageDialog(this, "Turno del jugador " + (this.turno+1));
+
+		while(true){
+			try {
+				Thread.sleep(2000);	
+				if(this.turno>=this.numJ && this.dealer.otraCarta()){
+					this.dealer.tomaCarta(baraja.next());
+					this.repaint();
+				}
+				if(!this.dealer.otraCarta()){
+					break;
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }
